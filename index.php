@@ -1,3 +1,8 @@
+<?php
+
+require_once "utils/Constants.php"
+
+?>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="assets/globalStyle.css">
@@ -20,7 +25,7 @@
 
 if (isset($_GET['repo'])) {
     $repoName = $_GET['repo'];
-    $requestUrl = "https://api.github.com/repos/Zemux1613/" . $repoName;
+    $requestUrl = "https://api.github.com/repos/" . $username . "/" . $repoName;
     echo "<script>
         let userArea = document.getElementById('userArea');
         userArea.style.display = 'none';
@@ -51,7 +56,7 @@ if (isset($_GET['repo'])) {
         }
         
         let branches = new XMLHttpRequest();
-        branches.open('GET', 'https://api.github.com/repos/Zemux1613/".$repoName."/branches');
+        branches.open('GET', 'https://api.github.com/repos/" . $username . "/" . $repoName . "/branches');
         branches.send();
         branches.onreadystatechange = () => {
             if (branches.readyState === 4 && branches.status === 200) {
@@ -75,7 +80,7 @@ if (isset($_GET['repo'])) {
             request.send();
             return request;
         }
-        let request = requestUrl('https://api.github.com/users/Zemux1613/repos?per_page=100');
+        let request = requestUrl('https://api.github.com/users/" . $username . "/repos?per_page=100');
         request.onreadystatechange = () => {
                 if (request.readyState === 4 && request.status === 200) {
                     let doc = document.getElementById('repos');
@@ -90,7 +95,7 @@ if (isset($_GET['repo'])) {
                 }
             }
             
-        let userRequest = requestUrl('https://api.github.com/users/Zemux1613');
+        let userRequest = requestUrl('https://api.github.com/users/".$username."');
         userRequest.onreadystatechange = () => {
                 if (userRequest.readyState === 4 && userRequest.status === 200) {
                     let item  = JSON.parse(userRequest.response);
