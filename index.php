@@ -9,12 +9,14 @@ require_once "utils/Constants.php"
 </head>
 <body>
 
-<div id="userArea">
-    <h3>Benutzerdaten</h3>
-    <img id="profilImage" alt="no image found">
-    <p id="username"></p>
-    <p id="bio"></p>
-    <p id="creation"></p>
+<div id="userArea" class="container">
+    <h3 class="headline">Benutzerdaten</h3>
+    <img id="profilImage" alt="no image found" class="image">
+    <div class="content">
+        <p id="username"></p>
+        <p id="bio"></p>
+        <p id="creation"></p>
+    </div>
 </div>
 
 <h3><?php if (!isset($_GET['repo'])) echo "Alle Projekte (<span id='repoCount'></span>)"; ?></h3>
@@ -42,11 +44,18 @@ if (isset($_GET['repo'])) {
                 let li3 = document.createElement('li');
                 let li4 = document.createElement('li');
                 let li5 = document.createElement('li');
-                li1.innerText = 'URL: ' + item.url;
+                let li6 = document.createElement('li');
+                li1.innerText = 'URL: ' + item.html_url;
                 li2.innerText = 'Description: ' + item.description;
                 li3.innerText = 'Erstellt am ' + item.created_at;
                 li4.innerText = 'Letzte Aktivität am ' + item.pushed_at;
                 li5.innerText = 'Erstellt am ' + item.created_at;
+                li6.innerText = 'Offene Issues ' + item.open_issues_count;
+                if(item.fork === false){
+                    let li7 = document.createElement('li');
+                    li7.innerText = 'Forks: ' + item.forks_count;
+                    doc.appendChild(li7);
+                }
                 doc.appendChild(li1);
                 doc.appendChild(li2);
                 doc.appendChild(li3);
@@ -88,7 +97,7 @@ if (isset($_GET['repo'])) {
                         let li = document.createElement('li');
                         let node = document.createElement('a');
                         node.href = 'index.php?repo=' + item.name;
-                        node.innerText = item.name + (item.archived === true ? ' (Archiviert)' : '');
+                        node.innerText = item.name + (item.archived === true ? ' (Archiviert)' : '') + (item.fork === true ? '(forked)' : '');
                         li.appendChild(node)
                         doc.appendChild(li)
                     })
