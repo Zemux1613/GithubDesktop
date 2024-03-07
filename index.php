@@ -10,6 +10,7 @@ if(isset($_GET['view'])) {
     <head>
         <title>Github Desktop</title>
         <meta charset="UTF-8">
+        <link href="assets/global.css" rel="stylesheet">
         <?php if (file_exists("assets/$view.css")) {
             echo '<link rel="stylesheet" href="assets/' . $view . '.css?' . time() . '">';
         } ?>
@@ -19,6 +20,7 @@ if(isset($_GET['view'])) {
     <noscript>You require JavaScript.</noscript>
     <?php
         require_once ("views/$view.php");
+        require_once ("views/footer.php");
     ?>
 </body>
 </html>

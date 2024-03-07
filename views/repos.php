@@ -1,3 +1,9 @@
+<?php
+if(!isset($_SESSION['username'])){
+    header("Location: index.php");
+}
+?>
+
 <div id="userArea" class="container">
     <h3 class="headline">Benutzerdaten</h3>
     <img id="profilImage" alt="no image found" class="image">
@@ -10,9 +16,9 @@
 
 <a href="index.php?view=logout" id="logoutButton">Logout</a>
 
-<?php if (!isset($_GET['repo'])) echo "<h2>Alle Projekte (<span id='repoCount'></span>)</h2>"; ?>
-<?php if (isset($_GET['repo'])) echo "<a href='index.php?view=repos'>Zurück</a>"?>
+<?php if (isset($_GET['repo'])) echo "<a href='index.php?view=repos' id='backButton'>Zurück</a>"?>
 <ul id="repos">
+    <?php if (!isset($_GET['repo'])) echo "<h2>Alle Projekte (<span id='repoCount'></span>)</h2>"; ?>
 
 </ul>
 <?php
