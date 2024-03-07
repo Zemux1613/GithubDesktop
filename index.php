@@ -19,7 +19,8 @@ require_once "utils/Constants.php"
     </div>
 </div>
 
-<h3><?php if (!isset($_GET['repo'])) echo "Alle Projekte (<span id='repoCount'></span>)"; ?></h3>
+<?php if (!isset($_GET['repo'])) echo "<h3>Alle Projekte (<span id='repoCount'></span>)</h3>"; ?>
+<?php if (isset($_GET['repo'])) echo "<a href='index.php'>Zurück</a>"?>
 <ul id="repos">
 
 </ul>
@@ -97,7 +98,7 @@ if (isset($_GET['repo'])) {
                         let li = document.createElement('li');
                         let node = document.createElement('a');
                         node.href = 'index.php?repo=' + item.name;
-                        node.innerText = item.name + (item.archived === true ? ' (Archiviert)' : '') + (item.fork === true ? '(forked)' : '');
+                        node.innerText = item.name + (item.archived === true ? ' (Archiviert)' : '') + (item.fork === true ? ' (forked)' : '') + '\\n' + 'Issues: ' + item.open_issues + ' | Forks: ' + item.forks + ' | Watcher: ' + item.watchers + (item.language != null ? 'Language: ' + item.language : '');
                         li.appendChild(node)
                         doc.appendChild(li)
                     })

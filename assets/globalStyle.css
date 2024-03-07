@@ -32,3 +32,30 @@ body {
 .image { grid-area: image; }
 
 .content { grid-area: content; }
+
+/* Gemeinsame Stile für die Liste */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Stil für jedes Listenelement (Repository) */
+li {
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  margin: 0 0 16px;
+  padding: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(27, 31, 35, 0.1);
+}
+
+/* Stil für den Link innerhalb des Listenelements */
+li a {
+  text-decoration: none;
+  color: #0366d6; /* GitHub-Blau */
+  font-weight: bold;
+}
+
+li a:hover {
+  text-decoration: underline;
+}
