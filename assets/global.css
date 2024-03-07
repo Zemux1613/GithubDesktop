@@ -3,4 +3,11 @@ footer {
     color: #fff;
     padding: 20px;
     text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+footer a {
+    text-decoration: none;
 }
